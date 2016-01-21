@@ -37,7 +37,7 @@ public class SuffixTree {
 	 * posicion en la que empieza el patron en cada ocurrencia (tal que la primera posicion
 	 * del texto sea 1).
 	 */
-	private static void stringMatching(String patron, String texto) {
+	public static void stringMatching(String patron, String texto) {
 		System.out.println("Resolviendo String Matching...");
 		System.out.println("Texto: " + texto);
 		System.out.println("Patron: " + patron);
@@ -62,7 +62,7 @@ public class SuffixTree {
 	 * los textos en los que aparece el patron y muestra por pantalla cuales son, indicando
 	 * el numero de texto segun se han introducido (empezando por el 1).
 	 */
-	private static void substringProblem(String patron, ArrayList<String> textos) {
+	public static void substringProblem(String patron, ArrayList<String> textos) {
 		System.out.println("Resolviendo Substring Problem...");
 		
 		/* Crea un arbol de sufijos compacto a partir de los textos concatenados */
