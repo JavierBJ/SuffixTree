@@ -15,6 +15,9 @@ public class Tests {
 		File gen = new File(args[0]);
 		try {
 			ArrayList<String> a = readFastaSubstring(gen,3);
+			for (String s : a) {
+				System.out.println("Texto: "+s);
+			}
 			SuffixTree.substringProblem("GAT", a);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

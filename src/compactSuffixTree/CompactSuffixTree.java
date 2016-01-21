@@ -1,6 +1,7 @@
 package compactSuffixTree;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class CompactSuffixTree extends AbstractSuffixTree {
 	
@@ -118,7 +119,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 		}
 	}
 
-	public ArrayList<Integer> substringProblem(SuffixTreeNode node, String pattern) {
+	public LinkedHashSet<Integer> substringProblem(SuffixTreeNode node, String pattern) {
 		/* Comprueba cada hijo del nodo */
 		ArrayList<SuffixTreeNode> children = node.children;
 		for (int i=0; i<children.size(); i++) {
@@ -138,7 +139,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 				/* Si un nodo hijo comienza por nuestro patron, tenemos la solucion */
 				//System.out.println("label " + childLabel + " empieza por pattern " + pattern);
 				//return children.get(i).incomingEdge.branchIndex; //More efficient but more memory intensive
-				return findTextCoincidences(children.get(i), new ArrayList<Integer>());
+				return findTextCoincidences(children.get(i), new LinkedHashSet<Integer>());
 			} else if (pattern.startsWith(childLabel)) {
 				/* Si el patron empieza por un nodo hijo, seguimos mirando el resto del patron en ese nodo */
 				//System.out.println("pattern " + pattern + " empieza por label " + childLabel);
@@ -150,7 +151,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 			}
 		}
 		/* Si no hay coincidencia, devuelve una lista vacia */
-		return new ArrayList<Integer>();
+		return new LinkedHashSet<Integer>();
 	}
 	
 	/**
@@ -158,16 +159,16 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	 * y devuelve el label de todos sus nodos hoja para saber las posiciones
 	 * en las que aparece un patron.
 	 */
-	private ArrayList<Integer> findTextCoincidences(SuffixTreeNode suffixTreeNode, ArrayList<Integer> list) {
+	private LinkedHashSet<Integer> findTextCoincidences(SuffixTreeNode suffixTreeNode, LinkedHashSet<Integer> list) {
 		if (suffixTreeNode.isLeaf()) {
 			/* Si es una hoja, devuelve al padre el valor */
-			ArrayList<Integer> element = new ArrayList<>();
+			LinkedHashSet<Integer> element = new LinkedHashSet<>();
 			element.add(suffixTreeNode.textCount);
 			return element;
 		} else {
 			/* Si no es una hoja, junta el valor de todos sus hijos en una lista */
 			for (SuffixTreeNode child : suffixTreeNode.children) {
-				list.addAll(findTextCoincidences(child, new ArrayList<Integer>()));
+				list.addAll(findTextCoincidences(child, new LinkedHashSet<Integer>()));
 			}
 			return list;
 		}

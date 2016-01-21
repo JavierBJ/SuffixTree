@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import compactSuffixTree.CompactSuffixTree;
 import compactSuffixTree.SimpleSuffixTree;
@@ -69,9 +70,9 @@ public class SuffixTree {
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos));
 		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
 		//System.out.println("digraph {\n" + properties + arbol.root + "}");
-		
+		System.out.println("Texto: " + arbol.text);
 		/* Busca en cuantos textos aparece el patron */
-		ArrayList<Integer> resultados = arbol.substringProblem(arbol.root, patron);
+		LinkedHashSet<Integer> resultados = arbol.substringProblem(arbol.root, patron);
 		
 		/* Muestra los resultados por pantalla */
 		System.out.println("\tEl patron aparece en " + resultados.size() + " textos.");
