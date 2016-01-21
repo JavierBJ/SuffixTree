@@ -143,7 +143,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 				/* Si el patron empieza por un nodo hijo, seguimos mirando el resto del patron en ese nodo */
 				//System.out.println("pattern " + pattern + " empieza por label " + childLabel);
 				int index = childLabel.length();
-				return stringMatching(children.get(i), pattern.substring(index, pattern.length()));
+				return substringProblem(children.get(i), pattern.substring(index, pattern.length()));
 			} else {
 				/* En cualquier otro caso, no hay solucion en esa rama */
 				//System.out.println("No hay coincidencia entre " + pattern + " y " + childLabel);
