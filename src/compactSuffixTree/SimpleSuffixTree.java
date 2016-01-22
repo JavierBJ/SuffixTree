@@ -36,11 +36,16 @@ public class SimpleSuffixTree extends AbstractSuffixTree {
 	    	/* Increases the count of the text when $ is found */
 	    	if (treeText.charAt(i)=='$') {
 	    		numText++;
-	    	} else{  	
-		    	/* Crea una nueva rama para el sufijo i..n */
+	    	} else {
+	    		/* Crea una nueva rama para el sufijo i..n */
 		        List<String> suffixList = new ArrayList<String>();
 		        for (int k = i; k < treeText.length(); k++) {
 		            suffixList.add(treeText.charAt(k) + "");
+		            
+		            /* Cuando encuentra $, deja de introducir caracteres */
+		            if (treeText.charAt(k)=='$') {
+		            	break;
+		            }
 		        }
 		        
 		        /* Incluye el nuevo sufijo en el arbol */

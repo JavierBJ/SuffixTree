@@ -7,7 +7,7 @@ import java.util.List;
 public class SuffixTreeNode {
 	SuffixTreeEdge incomingEdge = null;
 	int label = -1;
-	int textCount = -1;
+	ArrayList<Integer> textCount = new ArrayList<Integer>();
 	ArrayList<SuffixTreeNode> children = null;
 	int stringDepth;
 	    
@@ -16,20 +16,23 @@ public class SuffixTreeNode {
 	    children = new ArrayList<SuffixTreeNode>();
 	    incomingEdge = new SuffixTreeEdge(incomingLabel, label);
 	    this.label = label;
-	    textCount = numText;
+	    textCount.add(numText);
 	    stringDepth = previousDepth + incomingLabel.length();
 	}
 	
 	public SuffixTreeNode() {
 	    children = new ArrayList<SuffixTreeNode>();
 	    label = 0;
-	    textCount = 0;
 	}
 	
 	public void addSuffix(List<String> suffix, int pathIndex, int numText) {
 	    SuffixTreeNode insertAt = this;
 	    insertAt = search(this, suffix, pathIndex);
-	    insert(insertAt, suffix, pathIndex, numText);
+	    if (suffix.isEmpty()) {
+	    	insertAt.textCount.add(numText);
+	    } else {
+	    	insert(insertAt, suffix, pathIndex, numText);
+	    }
 	}
 	
 	private SuffixTreeNode search(SuffixTreeNode startNode, List<String> suffix, int pathIndex) {

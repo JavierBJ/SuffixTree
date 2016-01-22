@@ -50,6 +50,7 @@ public class SuffixTree {
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
 		ArrayList<Integer> resultados = arbol.stringMatching(arbol.root, patron);
+		resultados.sort(null);
 		
 		/* Muestra los resultados por pantalla */
 		System.out.println("\tOcurrencias encontradas: " + resultados.size());
@@ -70,7 +71,7 @@ public class SuffixTree {
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos));
 		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
 		//System.out.println("digraph {\n" + properties + arbol.root + "}");
-		System.out.println("Texto: " + arbol.text);
+		
 		/* Busca en cuantos textos aparece el patron */
 		LinkedHashSet<Integer> resultados = arbol.substringProblem(arbol.root, patron);
 		

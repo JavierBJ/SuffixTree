@@ -35,6 +35,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	            child.incomingEdge.label += grandchild.incomingEdge.label;
 	            child.stringDepth += grandchild.incomingEdge.label.length();
 	            child.children = grandchild.children;
+	            child.textCount = grandchild.textCount;
 	        }
 	        /* Compacta el siguiente nodo de forma recursiva */
 	        child = compact(child);
@@ -163,7 +164,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 		if (suffixTreeNode.isLeaf()) {
 			/* Si es una hoja, devuelve al padre el valor */
 			LinkedHashSet<Integer> element = new LinkedHashSet<>();
-			element.add(suffixTreeNode.textCount);
+			element.addAll(suffixTreeNode.textCount);
 			return element;
 		} else {
 			/* Si no es una hoja, junta el valor de todos sus hijos en una lista */
