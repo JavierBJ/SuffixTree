@@ -45,8 +45,8 @@ public class SuffixTree {
 		
 		/* Crea un arbol de sufijos compacto a partir del texto */
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto));
-		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
-		//System.out.println("digraph {\n" + properties + arbol.root + "}");
+		String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
+		System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
 		ArrayList<Integer> resultados = arbol.stringMatching(arbol.root, patron);
