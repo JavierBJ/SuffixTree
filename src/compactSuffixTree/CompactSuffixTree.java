@@ -38,7 +38,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	            child.textCount = grandchild.textCount;
 	        }
 	        /* Compacta el siguiente nodo de forma recursiva */
-	        child = compact(child);
+	        child = compactRec(child);
 	    }
 	    return node;
 	}
