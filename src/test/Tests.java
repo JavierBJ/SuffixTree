@@ -19,13 +19,81 @@ public class Tests {
 	
 	public static void main(String[] args) {
 		
-		String t1 = generarTexto(50);
-		System.out.println(t1);
-		String p1 = generarPatron(t1,5);
-		System.out.println(p1);
-		//long t = bateriaPruebasStringMatching(10,6);
-		long t = bateriaPruebasSubstring(10,100,2);
-		System.out.println(t);
+		/*bateriaPruebasStringMatching(10,2);
+		bateriaPruebasStringMatching(50,2);
+		bateriaPruebasStringMatching(100,2);
+		bateriaPruebasStringMatching(500,2);
+		bateriaPruebasStringMatching(2000,2);
+		bateriaPruebasStringMatching(10,5);
+		bateriaPruebasStringMatching(50,5);
+		bateriaPruebasStringMatching(100,5);
+		bateriaPruebasStringMatching(500,5);
+		bateriaPruebasStringMatching(2000,5);
+		//bateriaPruebasStringMatching(10,25);
+		bateriaPruebasStringMatching(50,25);
+		bateriaPruebasStringMatching(100,25);
+		bateriaPruebasStringMatching(500,25);
+		bateriaPruebasStringMatching(2000,25);*/
+		
+		/*bateriaPruebasSubstring(2,10,2);
+		bateriaPruebasSubstring(2,50,2);
+		bateriaPruebasSubstring(2,100,2);
+		bateriaPruebasSubstring(2,200,2);
+		bateriaPruebasSubstring(2,10,5);
+		bateriaPruebasSubstring(2,50,5);
+		bateriaPruebasSubstring(2,100,5);
+		bateriaPruebasSubstring(2,200,5);
+		//bateriaPruebasSubstring(10,10,25);
+		bateriaPruebasSubstring(2,50,25);
+		bateriaPruebasSubstring(2,100,25);
+		bateriaPruebasSubstring(2,200,25);
+		
+		bateriaPruebasSubstring(5,10,2);
+		bateriaPruebasSubstring(5,50,2);
+		bateriaPruebasSubstring(5,100,2);
+		bateriaPruebasSubstring(5,200,2);
+		bateriaPruebasSubstring(5,10,5);
+		bateriaPruebasSubstring(5,50,5);
+		bateriaPruebasSubstring(5,100,5);
+		bateriaPruebasSubstring(5,200,5);
+		//bateriaPruebasSubstring(100,10,25);
+		bateriaPruebasSubstring(5,50,25);
+		bateriaPruebasSubstring(5,100,25);
+		bateriaPruebasSubstring(5,200,25);*/
+		
+		bateriaPruebasSubstring(10,10,2);
+		bateriaPruebasSubstring(10,50,2);
+		bateriaPruebasSubstring(10,100,2);
+		bateriaPruebasSubstring(10,200,2);
+		bateriaPruebasSubstring(10,10,5);
+		bateriaPruebasSubstring(10,50,5);
+		bateriaPruebasSubstring(10,100,5);
+		bateriaPruebasSubstring(10,200,5);
+		//bateriaPruebasSubstring(100,10,25);
+		bateriaPruebasSubstring(10,50,25);
+		bateriaPruebasSubstring(10,100,25);
+		bateriaPruebasSubstring(10,200,25);
+		
+		/*bateriaPruebasSubstring(100,10,2);
+		bateriaPruebasSubstring(100,50,2);
+		bateriaPruebasSubstring(100,100,2);
+		bateriaPruebasSubstring(100,200,2);
+		bateriaPruebasSubstring(100,10,5);
+		bateriaPruebasSubstring(100,50,5);
+		bateriaPruebasSubstring(100,100,5);
+		bateriaPruebasSubstring(100,200,5);
+		//bateriaPruebasSubstring(100,10,25);
+		bateriaPruebasSubstring(100,50,25);
+		bateriaPruebasSubstring(100,100,25);
+		bateriaPruebasSubstring(100,200,25);*/
+		
+		
+
+		
+		
+	
+		//long t = bateriaPruebasSubstring(10,100,2);
+		//System.out.println(t);
 		
 		
 		
@@ -104,36 +172,42 @@ public class Tests {
 		return texto.substring(indice, indice+lon);
 	}
 	
-	public static long bateriaPruebasStringMatching(int lonTexto, int lonPatron){
-		final int PRUEBAS = 10;
+	public static double bateriaPruebasStringMatching(int lonTexto, int lonPatron){
+		final int PRUEBAS = 50;
+		final double PRUEBASD = 50.0;
 		long tiempoTotal = 0;
 		for (int i = 0; i < PRUEBAS; i++) {
 			String t = generarTexto(lonTexto);
 			String p = generarPatron(t,lonPatron);
 			long b =  System.currentTimeMillis();
-			SuffixTree.stringMatching(p, t);
+			SuffixTree.stringMatchingTest(p, t);
 			long after =  System.currentTimeMillis();
 			tiempoTotal += (after-b);			
 		}
-		return tiempoTotal/PRUEBAS;		
+		System.out.println("Tiempo medio con texto de tamaño " + lonTexto +
+				" y patron de tamaño " + lonPatron + " --> " + tiempoTotal/PRUEBASD);
+		return tiempoTotal/PRUEBASD;		
 	}
 	
-	public static long bateriaPruebasSubstring(int numTextos, int lonTextos, int lonPatron){
-		final int PRUEBAS = 10;
+	public static double bateriaPruebasSubstring(int numTextos, int lonTextos, int lonPatron){
+		final int PRUEBAS = 50;
+		final double PRUEBASD = 50.0;
 		long tiempoTotal = 0;
 		Random r = new Random();
 		for (int i = 0; i < PRUEBAS; i++) {
 			ArrayList<String> texts = new ArrayList<String>();
-			for(int j = 0; j < lonTextos; j++){
+			for(int j = 0; j < numTextos; j++){
 				texts.add(generarTexto(lonTextos));
 			}
 			String p = generarPatron(texts.get(r.nextInt(numTextos)),lonPatron);
 			long b =  System.currentTimeMillis();
-			SuffixTree.substringProblem(p, texts);
+			SuffixTree.substringProblemTest(p, texts);
 			long after =  System.currentTimeMillis();
 			tiempoTotal += (after-b);			
 		}
-		return tiempoTotal/PRUEBAS;		
+		System.out.println("Tiempo medio con " + numTextos + " textos de tamaño " + lonTextos +
+				" y patron de tamaño " + lonPatron + " --> " + tiempoTotal/PRUEBASD);
+		return tiempoTotal/PRUEBASD;		
 	}
 
 }
