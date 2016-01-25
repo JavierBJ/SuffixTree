@@ -108,7 +108,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	private ArrayList<Integer> findAppearances(SuffixTreeNode suffixTreeNode, ArrayList<Integer> list) {
 		if (suffixTreeNode.isLeaf()) {
 			/* Si es una hoja, devuelve al padre el valor */
-			ArrayList<Integer> element = new ArrayList<>();
+			ArrayList<Integer> element = new ArrayList<Integer>();
 			element.add(suffixTreeNode.label);
 			return element;
 		} else {
@@ -163,7 +163,7 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	private LinkedHashSet<Integer> findTextCoincidences(SuffixTreeNode suffixTreeNode, LinkedHashSet<Integer> list) {
 		if (suffixTreeNode.isLeaf()) {
 			/* Si es una hoja, devuelve al padre el valor */
-			LinkedHashSet<Integer> element = new LinkedHashSet<>();
+			LinkedHashSet<Integer> element = new LinkedHashSet<Integer>();
 			element.addAll(suffixTreeNode.textCount);
 			return element;
 		} else {

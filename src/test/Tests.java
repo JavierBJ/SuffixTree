@@ -180,7 +180,7 @@ public class Tests {
 			String t = generarTexto(lonTexto);
 			String p = generarPatron(t,lonPatron);
 			long b =  System.currentTimeMillis();
-			SuffixTree.stringMatchingTest(p, t);
+			SuffixTree.stringMatchingTest(p, t,  alfabetoMinus.length);
 			long after =  System.currentTimeMillis();
 			tiempoTotal += (after-b);			
 		}
@@ -201,7 +201,7 @@ public class Tests {
 			}
 			String p = generarPatron(texts.get(r.nextInt(numTextos)),lonPatron);
 			long b =  System.currentTimeMillis();
-			SuffixTree.substringProblemTest(p, texts);
+			SuffixTree.substringProblemTest(p, texts,  alfabetoMinus.length);
 			long after =  System.currentTimeMillis();
 			tiempoTotal += (after-b);			
 		}
