@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 
 import compactSuffixTree.CompactSuffixTree;
@@ -52,7 +53,7 @@ public class SuffixTree {
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
 		ArrayList<Integer> resultados = arbol.stringMatching(arbol.root, patron);
-		resultados.sort(null);
+		Collections.sort(resultados);
 		
 		/* Muestra los resultados por pantalla */
 		System.out.println("\tOcurrencias encontradas: " + resultados.size());
@@ -79,7 +80,7 @@ public class SuffixTree {
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
 		ArrayList<Integer> resultados = arbol.stringMatching(arbol.root, patron);
-		resultados.sort(null);
+		Collections.sort(resultados);
 		
 		/* Muestra los resultados por pantalla */
 		//System.out.println("\tOcurrencias encontradas: " + resultados.size());
