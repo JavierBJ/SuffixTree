@@ -8,17 +8,17 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	/**
 	 * Crea un arbol de sufijos compacto a partir de un arbol de sufijos simple.
 	 */
-	public CompactSuffixTree(SimpleSuffixTree simpleSuffixTree) {
+	public CompactSuffixTree(SimpleSuffixTree simpleSuffixTree, int alfabeto) {
 	    super(simpleSuffixTree.text);
-	    super.root = compact(simpleSuffixTree.root);
+	    super.root = compact(simpleSuffixTree.root, alfabeto);
 	}
 	
 	/**
 	 * Compacta un arbol de sufijos simple.
 	 */
-	private SuffixTreeNode compact(SuffixTreeNode tree) {
+	private SuffixTreeNode compact(SuffixTreeNode tree, int alfabeto) {
 		SuffixTreeNode root = compactRec(tree);
-		return compressLabels(root);
+		return compressLabels(root, alfabeto);
 		//return root;
 	}
 	
@@ -48,19 +48,19 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	 * aristas de modo que se definan por el indice inicial y final del
 	 * texto que contienen.
 	 */
-	private SuffixTreeNode compressLabels(SuffixTreeNode node) {
+	private SuffixTreeNode compressLabels(SuffixTreeNode node, int alfabeto) {
 		for (int i=0; i<node.children.size(); i++) {
 			SuffixTreeNode child = node.children.get(i);
 			
 			/* Comprueba si la etiqueta es demasiado grande (length >= Log(n - |E|))*/
-			if (child.incomingEdge.label.length() >= Math.log(super.text.length() - 3)) {
+			if (child.incomingEdge.label.length() >= Math.log(super.text.length() - alfabeto)) {
 				int oldLabelLength = child.incomingEdge.label.length();
 				child.incomingEdge.label = 
 						Integer.toString(child.incomingEdge.branchIndex.get(0) + node.stringDepth) + ",";
 				child.incomingEdge.label += 
 						Integer.toString(child.incomingEdge.branchIndex.get(0) + node.stringDepth + oldLabelLength -1);
 			}
-			child = compressLabels(child);
+			child = compressLabels(child, alfabeto);
 		}
 		return node;
 	}

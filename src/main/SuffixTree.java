@@ -16,17 +16,19 @@ public class SuffixTree {
 	public static void main(String[] args) {				
 		if (args.length == 2) {
 			/* Si solo introduce patron y un texto, resuelve string matching */
-			String patron = args[0];
-			String texto = args[1];
-			stringMatching(patron, texto);
+			int alfabeto = Integer.parseInt(args[0]);
+			String patron = args[1];
+			String texto = args[2];
+			stringMatching(patron, texto, alfabeto);
 		} else if (args.length > 2) {
 			/* Si introduce patron y varios textos, resuelve problema del substring */
-			String patron = args[0];
+			int alfabeto = Integer.parseInt(args[0]);
+			String patron = args[1];
 			ArrayList<String> textos = new ArrayList<String>();
-			for (int i=1; i<args.length; i++) {
+			for (int i=2; i<args.length; i++) {
 				textos.add(args[i]);
 			}
-			substringProblem(patron, textos);
+			substringProblem(patron, textos, alfabeto);
 		} else {
 			System.out.println("Error: debe introducir minimo 2 argumentos (patron y texto/s).");
 		}
@@ -38,13 +40,13 @@ public class SuffixTree {
 	 * posicion en la que empieza el patron en cada ocurrencia (tal que la primera posicion
 	 * del texto sea 1).
 	 */
-	public static void stringMatching(String patron, String texto) {
+	public static void stringMatching(String patron, String texto, int alfabeto) {
 		System.out.println("Resolviendo String Matching...");
 		System.out.println("Texto: " + texto);
 		System.out.println("Patron: " + patron);
 		
 		/* Crea un arbol de sufijos compacto a partir del texto */
-		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto));
+		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto), alfabeto);
 		String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
 		System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
@@ -64,11 +66,11 @@ public class SuffixTree {
 	 * los textos en los que aparece el patron y muestra por pantalla cuales son, indicando
 	 * el numero de texto segun se han introducido (empezando por el 1).
 	 */
-	public static void substringProblem(String patron, ArrayList<String> textos) {
+	public static void substringProblem(String patron, ArrayList<String> textos, int alfabeto) {
 		System.out.println("Resolviendo Substring Problem...");
 		
 		/* Crea un arbol de sufijos compacto a partir de los textos concatenados */
-		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos));
+		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos), alfabeto);
 		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
 		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
