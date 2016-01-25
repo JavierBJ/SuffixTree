@@ -19,7 +19,7 @@ public class Tests {
 	
 	public static void main(String[] args) {
 		
-		/*bateriaPruebasStringMatching(10,2);
+		bateriaPruebasStringMatching(10,2);
 		bateriaPruebasStringMatching(50,2);
 		bateriaPruebasStringMatching(100,2);
 		bateriaPruebasStringMatching(500,2);
@@ -33,9 +33,9 @@ public class Tests {
 		bateriaPruebasStringMatching(50,25);
 		bateriaPruebasStringMatching(100,25);
 		bateriaPruebasStringMatching(500,25);
-		bateriaPruebasStringMatching(2000,25);*/
+		bateriaPruebasStringMatching(2000,25);
 		
-		/*bateriaPruebasSubstring(2,10,2);
+		bateriaPruebasSubstring(2,10,2);
 		bateriaPruebasSubstring(2,50,2);
 		bateriaPruebasSubstring(2,100,2);
 		bateriaPruebasSubstring(2,200,2);
@@ -59,7 +59,7 @@ public class Tests {
 		//bateriaPruebasSubstring(100,10,25);
 		bateriaPruebasSubstring(5,50,25);
 		bateriaPruebasSubstring(5,100,25);
-		bateriaPruebasSubstring(5,200,25);*/
+		bateriaPruebasSubstring(5,200,25);
 		
 		bateriaPruebasSubstring(10,10,2);
 		bateriaPruebasSubstring(10,50,2);
@@ -74,7 +74,7 @@ public class Tests {
 		bateriaPruebasSubstring(10,100,25);
 		bateriaPruebasSubstring(10,200,25);
 		
-		/*bateriaPruebasSubstring(100,10,2);
+		bateriaPruebasSubstring(100,10,2);
 		bateriaPruebasSubstring(100,50,2);
 		bateriaPruebasSubstring(100,100,2);
 		bateriaPruebasSubstring(100,200,2);
@@ -85,32 +85,7 @@ public class Tests {
 		//bateriaPruebasSubstring(100,10,25);
 		bateriaPruebasSubstring(100,50,25);
 		bateriaPruebasSubstring(100,100,25);
-		bateriaPruebasSubstring(100,200,25);*/
-		
-		
-
-		
-		
-	
-		//long t = bateriaPruebasSubstring(10,100,2);
-		//System.out.println(t);
-		
-		
-		
-		
-/*		File gen = new File(args[0]);
-		try {
-			ArrayList<String> a = readFastaSubstring(gen,100);
-			for (String s : a) {
-				System.out.println("Texto: "+s);
-			}
-			long b =  System.currentTimeMillis();
-			SuffixTree.substringProblem("GATTACA", a);
-			long after =  System.currentTimeMillis();
-			System.out.println(after-b);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}*/		
+		bateriaPruebasSubstring(100,200,25);
 	}
 	
 	

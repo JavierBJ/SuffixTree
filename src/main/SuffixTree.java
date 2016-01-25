@@ -15,13 +15,13 @@ public class SuffixTree {
 	 * por pantalla.
 	 */
 	public static void main(String[] args) {				
-		if (args.length == 2) {
+		if (args.length == 3) {
 			/* Si solo introduce patron y un texto, resuelve string matching */
 			int alfabeto = Integer.parseInt(args[0]);
 			String patron = args[1];
 			String texto = args[2];
 			stringMatching(patron, texto, alfabeto);
-		} else if (args.length > 2) {
+		} else if (args.length > 3) {
 			/* Si introduce patron y varios textos, resuelve problema del substring */
 			int alfabeto = Integer.parseInt(args[0]);
 			String patron = args[1];
@@ -96,6 +96,10 @@ public class SuffixTree {
 	 */
 	public static void substringProblem(String patron, ArrayList<String> textos, int alfabeto) {
 		System.out.println("Resolviendo Substring Problem...");
+
+		for (int i = 0; i < textos.size(); i++) {
+			System.out.println("TEXTO " + i+1 + " : " + textos.get(i) );
+		}
 		
 		/* Crea un arbol de sufijos compacto a partir de los textos concatenados */
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos), alfabeto);
