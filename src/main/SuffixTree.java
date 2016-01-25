@@ -47,7 +47,7 @@ public class SuffixTree {
 		
 		/* Crea un arbol de sufijos compacto a partir del texto */
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto), alfabeto);
-		String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
+		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
 		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
@@ -67,14 +67,14 @@ public class SuffixTree {
 	 * posicion en la que empieza el patron en cada ocurrencia (tal que la primera posicion
 	 * del texto sea 1).
 	 */
-	public static void stringMatchingTest(String patron, String texto) {
+	public static void stringMatchingTest(String patron, String texto, int alfabeto) {
 		//System.out.println("Resolviendo String Matching...");
 		//System.out.println("Texto: " + texto);
 		//System.out.println("Patron: " + patron);
 		
 		/* Crea un arbol de sufijos compacto a partir del texto */
-		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto));
-		String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
+		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto), alfabeto);
+		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
 		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
@@ -116,11 +116,11 @@ public class SuffixTree {
 	 * los textos en los que aparece el patron y muestra por pantalla cuales son, indicando
 	 * el numero de texto segun se han introducido (empezando por el 1).
 	 */
-	public static void substringProblemTest(String patron, ArrayList<String> textos) {
+	public static void substringProblemTest(String patron, ArrayList<String> textos, int alfabeto) {
 		//System.out.println("Resolviendo Substring Problem...");
 		
 		/* Crea un arbol de sufijos compacto a partir de los textos concatenados */
-		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos));
+		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos), alfabeto);
 		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
 		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
