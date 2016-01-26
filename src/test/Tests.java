@@ -3,12 +3,20 @@ package test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 import main.SuffixTree;
 
+/**
+ * 
+ * @author Javier Beltran Jorba
+ * @author Jorge Cancer Gil
+ * 
+ * Clase que encapsula las pruebas de tiempo de ejecucion
+ * del programa.
+ * 
+ */
 public class Tests {
 	
 	static String[] alfabeto  = {"A","B","C","D","E","F","G","H","I","J","K","L","M"
@@ -17,8 +25,10 @@ public class Tests {
 	static String[] alfabetoMinus  = {"a","b","c","d","e","f","g","h","i","j","k","l","m"
 			,"n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"};
 	
+	/**
+	 * Ejecuta diversas pruebas de ejecucion.
+	 */
 	public static void main(String[] args) {
-		
 		bateriaPruebasStringMatching(10,2);
 		bateriaPruebasStringMatching(50,2);
 		bateriaPruebasStringMatching(100,2);
@@ -88,8 +98,12 @@ public class Tests {
 		bateriaPruebasSubstring(100,200,25);
 	}
 	
-	
-	public static ArrayList<String> readFastaSubstring(File gen, int limit) throws FileNotFoundException{
+	/**
+	 * Crea un problema del substring de prueba a partir de un fichero
+	 * en formato FASTA.
+	 */
+	public static ArrayList<String> readFastaSubstring(File gen, int limit) 
+			throws FileNotFoundException{
 		ArrayList<String> texts = new ArrayList<String>();
 		Scanner f = new Scanner(gen);
 		String currentText = "";
@@ -111,27 +125,35 @@ public class Tests {
 				}
 			}
 		}
+		f.close();
 		return texts;
 	}
 	
-	public String readFastaStringMatching(File gen) throws FileNotFoundException{
+	/**
+	 * Crea un problema de string matching a partir de un fichero en
+	 * formato FASTA.
+	 */
+	public String readFastaStringMatching(File gen) 
+			throws FileNotFoundException{
 		Scanner f = new Scanner(gen);
 		String currentText = "";
-		int line = 1;
 		/*
 		 * Avoid the fist line
 		 */
 		String linea = f.nextLine();
 		while(f.hasNextLine()){		
-			line++;
 			linea = f.nextLine();
 			if(!linea.substring(0,1).equals(">")){
 				currentText += linea;
 			} else {}
 		}
+		f.close();
 		return currentText;
 	}
 	
+	/**
+	 * Genera un texto aleatorio de la longitud indicada.
+	 */
 	public static String generarTexto(int length){
 		String salida = "";		
 		for (int i = 0; i<length; i++){
@@ -141,12 +163,20 @@ public class Tests {
 		return salida;		
 	}
 	
+	/**
+	 * Genera un patron que exista en el texto y de la
+	 * longitud indicada.
+	 */
 	public static String generarPatron(String texto, int lon){
 		Random r = new Random();
 		int indice = r.nextInt(texto.length()-lon);
 		return texto.substring(indice, indice+lon);
 	}
 	
+	/**
+	 * Ejecuta una bateria de 50 pruebas de string matching para
+	 * una longitud de texto y de patron especificadas.
+	 */
 	public static double bateriaPruebasStringMatching(int lonTexto, int lonPatron){
 		final int PRUEBAS = 50;
 		final double PRUEBASD = 50.0;
@@ -160,10 +190,15 @@ public class Tests {
 			tiempoTotal += (after-b);			
 		}
 		System.out.println("Tiempo medio con texto de tamaño " + lonTexto +
-				" y patron de tamaño " + lonPatron + " --> " + tiempoTotal/PRUEBASD);
+				" y patron de tamaño " + lonPatron + " --> " + tiempoTotal/PRUEBASD + " ms");
 		return tiempoTotal/PRUEBASD;		
 	}
 	
+	/**
+	 * Ejecuta una bateria de 50 pruebas de problema del substring
+	 * para un numero de textos y una longitud de texto y de patron 
+	 * especificados.
+	 */
 	public static double bateriaPruebasSubstring(int numTextos, int lonTextos, int lonPatron){
 		final int PRUEBAS = 50;
 		final double PRUEBASD = 50.0;
@@ -181,7 +216,7 @@ public class Tests {
 			tiempoTotal += (after-b);			
 		}
 		System.out.println("Tiempo medio con " + numTextos + " textos de tamaño " + lonTextos +
-				" y patron de tamaño " + lonPatron + " --> " + tiempoTotal/PRUEBASD);
+				" y patron de tamaño " + lonPatron + " --> " + tiempoTotal/PRUEBASD + " ms");
 		return tiempoTotal/PRUEBASD;		
 	}
 

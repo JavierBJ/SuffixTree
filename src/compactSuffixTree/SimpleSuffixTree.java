@@ -3,6 +3,15 @@ package compactSuffixTree;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Javier Beltran Jorba
+ * @author Jorge Cancer Gil
+ * 
+ * Implementacion del arbol de sufijos simple, es decir, sin
+ * compactar sus ramas ni sus etiquetas.
+ *
+ */
 public class SimpleSuffixTree extends AbstractSuffixTree {
 	
 	/**

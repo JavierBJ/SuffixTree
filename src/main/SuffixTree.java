@@ -7,6 +7,15 @@ import java.util.LinkedHashSet;
 import compactSuffixTree.CompactSuffixTree;
 import compactSuffixTree.SimpleSuffixTree;
 
+/**
+ * 
+ * @author Javier Beltran Jorba
+ * @author Jorge Cancer Gil
+ * 
+ * Clase principal del programa. Lee los argumentos de la entrada estandar
+ * y resuelve el string matching o el problema del substring.
+ *
+ */
 public class SuffixTree {
 	
 	/**
@@ -31,7 +40,7 @@ public class SuffixTree {
 			}
 			substringProblem(patron, textos, alfabeto);
 		} else {
-			System.out.println("Error: debe introducir minimo 2 argumentos (patron y texto/s).");
+			System.out.println("Error: debe introducir minimo 3 argumentos (long. alfabeto, patron y texto/s).");
 		}
 	}
 	
@@ -48,8 +57,6 @@ public class SuffixTree {
 		
 		/* Crea un arbol de sufijos compacto a partir del texto */
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto), alfabeto);
-		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
-		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
 		ArrayList<Integer> resultados = arbol.stringMatching(arbol.root, patron);
@@ -69,24 +76,12 @@ public class SuffixTree {
 	 * del texto sea 1).
 	 */
 	public static void stringMatchingTest(String patron, String texto, int alfabeto) {
-		//System.out.println("Resolviendo String Matching...");
-		//System.out.println("Texto: " + texto);
-		//System.out.println("Patron: " + patron);
-		
 		/* Crea un arbol de sufijos compacto a partir del texto */
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(texto), alfabeto);
-		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
-		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
 		/* Busca las ocurrencias del patron en el arbol empezando a buscar en la raiz */
 		ArrayList<Integer> resultados = arbol.stringMatching(arbol.root, patron);
 		Collections.sort(resultados);
-		
-		/* Muestra los resultados por pantalla */
-		//System.out.println("\tOcurrencias encontradas: " + resultados.size());
-		if (resultados.size() > 0) {
-			//System.out.println("\tPosicion de las ocurrencias: " + resultados.toString());
-		}
 	}
 	
 	/**
@@ -96,15 +91,13 @@ public class SuffixTree {
 	 */
 	public static void substringProblem(String patron, ArrayList<String> textos, int alfabeto) {
 		System.out.println("Resolviendo Substring Problem...");
-
+		System.out.println("Patron: " + patron);
 		for (int i = 0; i < textos.size(); i++) {
-			System.out.println("TEXTO " + i+1 + " : " + textos.get(i) );
+			System.out.println("Texto " + (i+1) + " : " + textos.get(i) );
 		}
 		
 		/* Crea un arbol de sufijos compacto a partir de los textos concatenados */
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos), alfabeto);
-		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
-		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
 		/* Busca en cuantos textos aparece el patron */
 		LinkedHashSet<Integer> resultados = arbol.substringProblem(arbol.root, patron);
@@ -122,20 +115,10 @@ public class SuffixTree {
 	 * el numero de texto segun se han introducido (empezando por el 1).
 	 */
 	public static void substringProblemTest(String patron, ArrayList<String> textos, int alfabeto) {
-		//System.out.println("Resolviendo Substring Problem...");
-		
 		/* Crea un arbol de sufijos compacto a partir de los textos concatenados */
 		CompactSuffixTree arbol = new CompactSuffixTree(new SimpleSuffixTree(textos), alfabeto);
-		//String properties = "rankdir=LR; node[shape=box fillcolor=gray95 style=filled]\n";
-		//System.out.println("digraph {\n" + properties + arbol.root + "}");
 		
 		/* Busca en cuantos textos aparece el patron */
-		LinkedHashSet<Integer> resultados = arbol.substringProblem(arbol.root, patron);
-		
-		/* Muestra los resultados por pantalla */
-		//System.out.println("\tEl patron aparece en " + resultados.size() + " textos.");
-		if (resultados.size() > 0) {
-			//System.out.println("\tEl patron aparece en los textos: " + resultados.toString());
-		}
+		arbol.substringProblem(arbol.root, patron);
 	}
 }

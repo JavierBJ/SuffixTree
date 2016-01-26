@@ -2,6 +2,17 @@ package compactSuffixTree;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Javier Beltran Jorba
+ * @author Jorge Cancer Gil
+ * 
+ * Clase que representa al arbol de sufijos. Se encarga de transformar
+ * el texto en uno que tenga la estructura adecuada para un arbol (es
+ * decir, con un $ al final). La implementacion concreta del arbol queda
+ * a cargo de las subclases SimpleSuffixTree y CompactSuffixTree.
+ *
+ */
 public class AbstractSuffixTree {
 	
 	public String text = null;

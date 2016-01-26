@@ -3,6 +3,17 @@ package compactSuffixTree;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
+/**
+ * 
+ * @author Javier Beltran Jorba
+ * @author Jorge Cancer Gil
+ * 
+ * Implementacion del arbol de sufijos compacto, es decir, con sus ramas
+ * compactadas y sus etiquetas expresadas como a..b (donde a y b son los
+ * indices de inicio y final del substring en el texto) si la etiqueta es
+ * suficientemente larga.
+ *
+ */
 public class CompactSuffixTree extends AbstractSuffixTree {
 	
 	/**
@@ -19,7 +30,6 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 	private SuffixTreeNode compact(SuffixTreeNode tree, int alfabeto) {
 		SuffixTreeNode root = compactRec(tree);
 		return compressLabels(root, alfabeto);
-		//return root;
 	}
 	
 	/**
@@ -65,6 +75,11 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 		return node;
 	}
 	
+	/**
+	 * Resuelve el problema de string matching para un texto representado por un
+	 * arbol cuya raiz es <node> y un patron <pattern>, devolviendo una lista con
+	 * la posicion de cada aparicion del patron en el texto.
+	 */
 	public ArrayList<Integer> stringMatching(SuffixTreeNode node, String pattern) {
 		/* Comprueba cada hijo del nodo */
 		ArrayList<SuffixTreeNode> children = node.children;
@@ -83,17 +98,11 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 			
 			if (childLabel.startsWith(pattern)) {
 				/* Si un nodo hijo comienza por nuestro patron, tenemos la solucion */
-				//System.out.println("label " + childLabel + " empieza por pattern " + pattern);
-				//return children.get(i).incomingEdge.branchIndex; //More efficient but more memory intensive
 				return findAppearances(children.get(i), new ArrayList<Integer>());
 			} else if (pattern.startsWith(childLabel)) {
 				/* Si el patron empieza por un nodo hijo, seguimos mirando el resto del patron en ese nodo */
-				//System.out.println("pattern " + pattern + " empieza por label " + childLabel);
 				int index = childLabel.length();
 				return stringMatching(children.get(i), pattern.substring(index, pattern.length()));
-			} else {
-				/* En cualquier otro caso, no hay solucion en esa rama */
-				//System.out.println("No hay coincidencia entre " + pattern + " y " + childLabel);
 			}
 		}
 		/* Si no hay coincidencia, devuelve una lista vacia */
@@ -120,6 +129,12 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 		}
 	}
 
+	/**
+	 * Resuelve el problema del substring para un conjunto de textos representados
+	 * por un arbol formado concatenando todos los textos, cuya raiz es <node>, y
+	 * para un patron <pattern>. Devuelve un listado con el numero identificador
+	 * de cada texto en el que aparece el patron (sin repetidos si aparece varias veces).
+	 */
 	public LinkedHashSet<Integer> substringProblem(SuffixTreeNode node, String pattern) {
 		/* Comprueba cada hijo del nodo */
 		ArrayList<SuffixTreeNode> children = node.children;
@@ -138,17 +153,11 @@ public class CompactSuffixTree extends AbstractSuffixTree {
 			
 			if (childLabel.startsWith(pattern)) {
 				/* Si un nodo hijo comienza por nuestro patron, tenemos la solucion */
-				//System.out.println("label " + childLabel + " empieza por pattern " + pattern);
-				//return children.get(i).incomingEdge.branchIndex; //More efficient but more memory intensive
 				return findTextCoincidences(children.get(i), new LinkedHashSet<Integer>());
 			} else if (pattern.startsWith(childLabel)) {
 				/* Si el patron empieza por un nodo hijo, seguimos mirando el resto del patron en ese nodo */
-				//System.out.println("pattern " + pattern + " empieza por label " + childLabel);
 				int index = childLabel.length();
 				return substringProblem(children.get(i), pattern.substring(index, pattern.length()));
-			} else {
-				/* En cualquier otro caso, no hay solucion en esa rama */
-				//System.out.println("No hay coincidencia entre " + pattern + " y " + childLabel);
 			}
 		}
 		/* Si no hay coincidencia, devuelve una lista vacia */
